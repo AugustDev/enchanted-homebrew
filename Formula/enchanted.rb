@@ -7,9 +7,14 @@ class Enchanted < Formula
   def install
     mkdir_p prefix/"Enchanted.app"
     system "tar", "-xf", cached_download, "-C", prefix/"Enchanted.app", "--strip-components", "1"
+    system "mv", prefix/"Enchanted.app", "/Applications/Enchanted.app"
   end
 
   def caveats
-    "Enchanted.app has been installed in #{opt_prefix}."
+    <<~EOS
+      Enchanted.app has been installed in /Applications.
+      To uninstall, run:
+        sudo rm -rf /Applications/Enchanted.app
+    EOS
   end
 end
